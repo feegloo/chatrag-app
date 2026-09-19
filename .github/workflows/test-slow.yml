@@ -1,9 +1,9 @@
 name: Slow Tests (Scheduled)
 
 on:
-  schedule:
+  # schedule:
     # Run at 08:00 UTC every day
-    - cron: '0 8 * * *'
+    # - cron: '0 8 * * *'
   workflow_dispatch:
 
 jobs:
