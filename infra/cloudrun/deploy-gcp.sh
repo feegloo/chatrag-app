@@ -433,8 +433,9 @@ if [[ "${ENABLE_STATIC_CDN}" == "true" ]]; then
 fi
 
 # ── Step 8d: Configure HTTPS LB ─────────────────────────────────────────────
-# Skipped in CI — LB/NEG/SSL cert are already configured in production.
-if [[ "${ENABLE_STATIC_CDN}" == "true" ]] && [[ -z "${CI:-}" ]]; then
+# Restore the existing HTTPS configuration in CI only when explicitly requested.
+if [[ "${ENABLE_STATIC_CDN}" == "true" ]] &&
+   [[ -z "${CI:-}" || "${RESTORE_HTTPS:-false}" == "true" ]]; then
   info "Step 8d/9: Configuring HTTPS Load Balancer + Cloud CDN routing..."
 
   if ! gcloud compute network-endpoint-groups describe "$LB_NEG_NAME" --region "$REGION" &>/dev/null; then
