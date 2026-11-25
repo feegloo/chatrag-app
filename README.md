@@ -199,7 +199,7 @@ Option 1: Interactive psql session (simplest)
 gcloud sql connect chatrag-db-instance --user=chatrag --database=chatrag --project=chatbotqa-app
 ```
 
-Option 2: One-liner with query piped in
+Option 2: One-liner with query piped in:
 
 ```
 echo "SELECT * FROM conversation_messages ORDER BY created_at DESC LIMIT 20;" | \
